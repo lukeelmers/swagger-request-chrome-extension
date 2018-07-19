@@ -18,5 +18,5 @@
     }
   ],
   "permissions": ["contextMenus", "management", "tabs", "storage"],
-  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http://* https://* 'unsafe-eval' 'unsafe-inline'; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; script-src 'self' http://localhost:3000 https://localhost:3000 'unsafe-eval'; connect-src http: https: 'unsafe-eval' 'unsafe-inline'; style-src * 'unsafe-inline' 'self' blob:; img-src 'self' data:;"
 }
