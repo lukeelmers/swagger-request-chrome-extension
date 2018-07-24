@@ -9,10 +9,14 @@ const propTypes = {
   loading: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
+  summary: PropTypes.string,
   params: PropTypes.object.isRequired, // TODO: define shape
   onSend: PropTypes.func.isRequired,
   resolveRefs: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  summary: '',
 };
 
 class PathOperation extends React.Component {
@@ -56,14 +60,7 @@ class PathOperation extends React.Component {
   };
 
   render() {
-    const {
-      loading,
-      path,
-      method,
-      summary,
-      params,
-      resolveRefs,
-    } = this.props;
+    const { loading, path, method, summary, params, resolveRefs } = this.props;
     return (
       <div className={style.OperationWrapper}>
         <h3 className={style.Header} onClick={this.toggleExpanded}>
@@ -77,7 +74,7 @@ class PathOperation extends React.Component {
         </h3>
         {this.state.expanded && (
           <React.Fragment>
-            <p className={style.Summary}>{summary}</p>
+            {!!summary.length && <p className={style.Summary}>{summary}</p>}
             <div className={style.OperationBody}>
               {Object.keys(params).map((param, i) => {
                 const section = resolveRefs(params[param][0]).in || null;
@@ -113,5 +110,6 @@ class PathOperation extends React.Component {
 }
 
 PathOperation.propTypes = propTypes;
+PathOperation.defaultProps = defaultProps;
 
 export default PathOperation;
