@@ -10,6 +10,8 @@ const mocks = {
     get: {"id":61922,"name":"string","completed":null,"completed_at":null,"url":"http://todos.stoplight.io/todos/61922"},
     // eslint-disable-next-line
     put: {"id":61922,"name":"string","completed":null,"completed_at":null,"url":"http://todos.stoplight.io/todos/61922"},
+    // eslint-disable-next-line
+    delete: {"id":61922,"status":"success!"},
   },
 };
 

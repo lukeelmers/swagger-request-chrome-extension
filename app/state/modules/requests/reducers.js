@@ -2,7 +2,7 @@ import * as types from './types';
 
 const initialState = {
   loading: false,
-  error: null,
+  error: false,
   requests: [],
 };
 
@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
-        error: null,
+        error: false,
         requests: state.requests.map((r, i) => {
           if (i === state.requests.length - 1) {
             return { ...r, response: action.data };
@@ -34,7 +34,12 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         error: true,
-        // data: action.data, // TODO: Do something with error data.
+        requests: state.requests.map((r, i) => {
+          if (i === state.requests.length - 1) {
+            return { ...r, response: action.data };
+          }
+          return r;
+        }),
       };
     default:
       return state;

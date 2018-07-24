@@ -49,7 +49,9 @@ class PathOperation extends React.Component {
     };
     this.props.onSend(this.props.method, detokenize(this.props.path, path), {
       header,
-      query,
+      query: Object.keys(query || {})
+        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(query[k])}`)
+        .join('&'),
       body,
     });
   };

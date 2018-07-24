@@ -12,6 +12,8 @@ import style from './App.css';
 const propTypes = {
   host: PropTypes.string.isRequired,
   paths: PropTypes.object.isRequired,
+  lastResponse: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]).isRequired,
+  error: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   resolveRefs: PropTypes.func.isRequired,
   getPathOperations: PropTypes.func.isRequired,
@@ -26,10 +28,30 @@ class App extends React.Component {
   };
 
   render() {
-    const { host, loading, paths, getPathOperations, getOperationParams, resolveRefs } = this.props;
+    const {
+      host,
+      paths,
+      lastResponse,
+      error,
+      loading,
+      resolveRefs,
+      getPathOperations,
+      getOperationParams,
+    } = this.props;
+
     return (
       <div className={style.App}>
         <h1>{host}</h1>
+        {lastResponse && (!!lastResponse.length || !!Object.keys(lastResponse).length) && (
+          <div className={style.Response}>
+            <label htmlFor="response">response</label>
+            <textarea
+              id="response"
+              value={`// ${error ? 'ERROR' : 'Response'} from ${host}\n` + JSON.stringify(lastResponse, null, 2)}
+              readOnly
+            />
+          </div>
+        )}
         <ul className={style.PathList}>
           {Object.keys(paths).map(p => (
             <Path name={p} key={p} params={paths[p].parameters || []}>
@@ -59,7 +81,9 @@ App.propTypes = propTypes;
 const mapStateToProps = state => ({
   host: swaggerSelectors.getHost(state),
   paths: swaggerSelectors.getPaths(state),
+  lastResponse: requestsSelectors.getLastResponse(state),
   loading: requestsSelectors.getIsLoading(state),
+  error: requestsSelectors.getIsError(state),
   resolveRefs: obj => swaggerSelectors.resolveRefs(state, obj),
   getPathOperations: path => swaggerSelectors.getPathOperations(state, path),
   getOperationParams: (path, operation) => {

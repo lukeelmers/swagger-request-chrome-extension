@@ -7,3 +7,26 @@
 .PathList {
   padding: 0;
 }
+
+.Response label {
+  display: none;
+}
+
+.Response textarea {
+  width: 100%;
+  box-sizing: border-box;
+  height: 8em;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #666;
+  outline: none;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 0.9em;
+  background: #333;
+  color: #51c6ff;
+}
+
+.Response textarea:focus {
+  box-shadow: 0 0 5px #51c6ff;
+  border: 1px solid #51c6ff;
+}
