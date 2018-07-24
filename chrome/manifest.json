@@ -1,10 +1,10 @@
 {
   "version": "0.0.1",
-  "name": "swagger-chrome-request-maker",
+  "name": "swagger-request-chrome-extension",
   "manifest_version": 2,
   "description": "A Chrome extension for reading Swagger files and making requests.",
   "page_action": {
-    "default_title": "Swagger Chrome Request Maker",
+    "default_title": "Swagger Request Maker Chrome Extension",
     "default_popup": "popup.html"
   },
   "background": {
