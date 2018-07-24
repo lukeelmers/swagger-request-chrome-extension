@@ -1,8 +1,9 @@
 .App {
+  padding: 0 25px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #333;
 }
 
-.SwaggerDebug {
-  margin: 10px;
-  max-height: 400px;
-  overflow: auto;
+.PathList {
+  padding: 0;
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import style from './PathOperation.css';
+
 import Parameter from './Parameter';
 
 const propTypes = {
@@ -15,7 +17,13 @@ const propTypes = {
 };
 
 class PathOperation extends React.Component {
-  state = {};
+  state = {
+    expanded: false,
+  };
+
+  toggleExpanded = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
   handleChange = (section, e) => {
     if (section === 'body') {
@@ -32,9 +40,10 @@ class PathOperation extends React.Component {
   handleSend = e => {
     const { header, query, path, body } = this.state;
     e.preventDefault();
+    e.stopPropagation(); // don't collapse the accordion
     const detokenize = (original, tokens = {}) => {
       Object.keys(tokens).forEach(t => {
-        original = original.replace(`{${t}}`, tokens[t])
+        original = original.replace(`{${t}}`, tokens[t]);
       });
       return original;
     };
@@ -56,38 +65,46 @@ class PathOperation extends React.Component {
       resolveRefs,
     } = this.props;
     return (
-      <div>
-        {method} {path} {loading && 'loading'}
-        <button onClick={this.handleSend} disabled={loading}>send</button>
-        <br />
-        &gt; Parameters<br />
-        {Object.keys(params).map((param, i) => {
-          const section = resolveRefs(params[param][0]).in || null;
-          if (!section) {
-            return;
-          }
-          return (
-            // eslint-disable-next-line
-            <form key={i} onChange={e => this.handleChange(section, e)}>
-              <h6>{section}</h6>
-              {params[param].map(p => {
-                p = resolveRefs(p);
-                const schema = resolveRefs(p.schema);
+      <div className={style.OperationWrapper}>
+        <h3 className={style.Header} onClick={this.toggleExpanded}>
+          <span className={style.HeaderMethod}>{method}</span>
+          <span className={style.HeaderPath}>{path}</span>
+          <button className={style.Button} onClick={this.handleSend} disabled={loading}>
+            send
+          </button>
+        </h3>
+        {this.state.expanded && (
+          <React.Fragment>
+            <p className={style.Summary}>{summary}</p>
+            <div className={style.OperationBody}>
+              {Object.keys(params).map((param, i) => {
+                const section = resolveRefs(params[param][0]).in || null;
+                if (!section) {
+                  return;
+                }
                 return (
-                  <Parameter
-                    key={`${section}_${p.name}`}
-                    name={p.name}
-                    section={section}
-                    type={p.type || schema.type}
-                    required={!!p.required}
-                    schema={schema}
-                  />
+                  // eslint-disable-next-line
+                  <form key={i} onChange={e => this.handleChange(section, e)}>
+                    {params[param].map(p => {
+                      p = resolveRefs(p);
+                      const schema = resolveRefs(p.schema);
+                      return (
+                        <Parameter
+                          key={`${section}_${p.name}`}
+                          name={p.name}
+                          section={section}
+                          type={p.type || schema.type}
+                          required={!!p.required}
+                          schema={schema}
+                        />
+                      );
+                    })}
+                  </form>
                 );
               })}
-            </form>
-          );
-        })}
-        <br />
+            </div>
+          </React.Fragment>
+        )}
       </div>
     );
   }

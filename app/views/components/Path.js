@@ -15,7 +15,6 @@ const defaultProps = {
 function Path({ name, children }) {
   return (
     <li key={name} className={style.Path}>
-      {name}
       {children}
     </li>
   );

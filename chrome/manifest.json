@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
-  "name": "stoplight-coding-challenge",
+  "version": "0.0.1",
+  "name": "swagger-chrome-request-maker",
   "manifest_version": 2,
-  "description": "Stoplight Coding Challenge - Swagger Request Maker",
+  "description": "A Chrome extension for reading Swagger files and making requests.",
   "page_action": {
-    "default_title": "Stoplight Coding Challenge",
+    "default_title": "Swagger Chrome Request Maker",
     "default_popup": "popup.html"
   },
   "background": {

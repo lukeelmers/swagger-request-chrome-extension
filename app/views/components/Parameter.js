@@ -44,6 +44,7 @@ class Parameter extends React.Component {
             type="number"
             id={`${section}_${name}`}
             defaultValue={inputDefault}
+            required={required}
           />
         );
         break;
@@ -54,6 +55,7 @@ class Parameter extends React.Component {
             type="checkbox"
             id={`${section}_${name}`}
             defaultValue={inputDefault}
+            required={required}
           />
         );
         break;
@@ -63,6 +65,7 @@ class Parameter extends React.Component {
             name={name}
             id={`${section}_${name}`}
             defaultValue={JSON.stringify(exampleText, null, 2)}
+            required={required}
           />
         );
         break;
@@ -73,13 +76,17 @@ class Parameter extends React.Component {
             type="text"
             id={`${section}_${name}`}
             defaultValue={inputDefault}
+            required={required}
           />
         );
     }
 
     return (
       <div>
-        <label htmlFor={`${section}_${name}`}>{name}</label>
+        <label htmlFor={`${section}_${name}`}>
+          {name} {required && '*'}
+          &nbsp;&nbsp; [<em>location: {section}</em>]
+        </label>
         {content}
       </div>
     );

@@ -1,0 +1,75 @@
+.OperationWrapper {
+  background: #ccc;
+  margin-bottom: 20px;
+}
+
+.Header {
+  background: #666;
+  padding: 5px 10px;
+  color: #eee;
+  cursor: pointer;
+}
+
+.HeaderMethod {
+  display: inline-block;
+  font-variant: small-caps;
+  color: #51c6ff;
+  width: 60px;
+}
+
+.HeaderPath {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+.Button {
+  width: 50px;
+  float: right;
+  background: #51c6ff;
+  border: 0;
+  font-variant: small-caps;
+}
+
+.OperationBody {
+  padding: 10px 15px;
+}
+
+.Summary {
+  font-size: 1.1em;
+  padding: 0 15px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.OperationWrapper label {
+  display: block;
+  line-height: 1.5em;
+}
+
+.OperationWrapper input {
+  width: 200px;
+  height: 2em;
+  padding: 0 6px;
+}
+
+.OperationWrapper textarea {
+  width: 400px;
+  height: 6em;
+  padding: 6px;
+}
+
+.OperationWrapper input,
+.OperationWrapper textarea {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 0.9em;
+  border: 1px solid #666;
+  background: #eee;
+  color: #666;
+  margin-bottom: 5px;
+  outline: none;
+}
+
+.OperationWrapper input:focus,
+.OperationWrapper textarea:focus {
+  box-shadow: 0 0 5px #51c6ff;
+  border: 1px solid #51c6ff;
+}

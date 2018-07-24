@@ -18,7 +18,7 @@ export const getPathOperations = (state, path) => {
     if (methods.indexOf(p) > -1) {
       obj[p] = {
         ...pathData[p],
-        parameters: [...get(pathData, `[${p}]parameters`, []), ...get(pathData, 'parameters', [])],
+        parameters: [...get(pathData, 'parameters', []), ...get(pathData, `[${p}]parameters`, [])],
       };
     }
     return obj;

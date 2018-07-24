@@ -29,9 +29,8 @@ class App extends React.Component {
     const { host, loading, paths, getPathOperations, getOperationParams, resolveRefs } = this.props;
     return (
       <div className={style.App}>
-        <h1>Request Maker</h1>
-        <h3>{host}</h3>
-        <ul>
+        <h1>{host}</h1>
+        <ul className={style.PathList}>
           {Object.keys(paths).map(p => (
             <Path name={p} key={p} params={paths[p].parameters || []}>
               {Object.keys(getPathOperations(p)).map(o => (
