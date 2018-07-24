@@ -6,7 +6,6 @@ import style from './PathOperation.css';
 import Parameter from './Parameter';
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
@@ -58,7 +57,6 @@ class PathOperation extends React.Component {
 
   render() {
     const {
-      id,
       loading,
       path,
       method,

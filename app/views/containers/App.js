@@ -55,10 +55,9 @@ class App extends React.Component {
         <ul className={style.PathList}>
           {Object.keys(paths).map(p => (
             <Path name={p} key={p} params={paths[p].parameters || []}>
-              {Object.keys(getPathOperations(p)).map(o => (
+              {Object.keys(getPathOperations(p)).map((o, i) => (
                 <PathOperation
-                  key={paths[p][o].operationId}
-                  id={paths[p][o].operationId}
+                  key={`${o}_${p}`}
                   loading={loading}
                   path={p}
                   method={o}
