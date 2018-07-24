@@ -71,9 +71,11 @@ class PathOperation extends React.Component {
         <h3 className={style.Header} onClick={this.toggleExpanded}>
           <span className={style.HeaderMethod}>{method}</span>
           <span className={style.HeaderPath}>{path}</span>
-          <button className={style.Button} onClick={this.handleSend} disabled={loading}>
-            send
-          </button>
+          {this.state.expanded && (
+            <button className={style.Button} onClick={this.handleSend} disabled={loading}>
+              send
+            </button>
+          )}
         </h3>
         {this.state.expanded && (
           <React.Fragment>
